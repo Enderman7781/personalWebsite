@@ -79,7 +79,7 @@
           <div class="card" id="hobbies">
             <div class="card-block">
               <h2>Hobbies</h2>
-              <div v-for="(group, index) in groupedItems" :key="index" class="row">
+              <div v-for="(group, index) in groupedHobbies" :key="index" class="row">
                 <div class="col-md-4 " v-for="item in group" :key="item.id" class="element">
                   <img :src="item.img_url" class="img-responsive" alt="">
                   <h3 class="h5">{{item.topic}}</h3>
@@ -89,48 +89,32 @@
             </div>
           </div>
 
-          <div class="card">
+          <div class="card" id="projects">
             <div class="card-block">
-              <h2>Present Projects</h2>
-              <div class="row">
-                <div class="col-md-4">
-                  <img src="./assets/images/img-02.jpg" class="img-responsive" alt="">
-                  <h3 class="h5">Online Shop Website</h3>
-                  <p>June 2023</p>
-                  <p>School Projects</p>
+              <h2>Projects</h2>
+              <div v-for="(group, index) in groupedProjects" :key="index" class="row">
+                <div class="col-md-4" v-for="item in group" :key="item.id" class="element">
+                  <!--<img :src="item.img_url" class="img-responsive" alt="">-->
+                  <h3 class="h5">{{item.title}}</h3>
+                  <p>{{item.time}}</p>
+                  <p>{{item.description}}</p>
                 </div>
-
-                <div class="col-md-4">
-                  <img src="./assets/images/img-02.jpg" class="img-responsive" alt="">
-                  <h3 class="h5">Small AI Module</h3>
-                  <p>July 2022</p>
-                  <p>Handwritten digit recognition. Image recognition </p>
-                </div>
-
               </div>
             </div>
           </div>
-          <div class="card">
+
+          <div class="card" id="education">
             <div class="card-block">
               <h2>Education</h2>
               <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-4" v-for="(item, index) in items" :key="index">
                   <div class="education-experience">
-                    <small class="date">Now</small>
-                    <h3 class="h5 date-title">Bachelor- <br>Computer Science and Information Engineering</h3>
-                    <p>National Changhua Univerisity of Education</p>
+                    <small class="date">{{item.dur}}</small>
+                    <h3 class="h5 date-title">{{item.major}}</h3>
+                    <h4 class="h5 date-title">{{item.study_at}}</h4>
+                    <p>{{item.degree}}</p>
                   </div>
                 </div>
-                <div class="col-md-4">
-                  <div class="education-experience">
-                    <small class="date">2018</small>
-                    <h3 class="h5 date-title">High School- Normal Subject</h3>
-                    <p>Hsin Tian Senior High School</p>
-                  </div>
-
-                </div>
-
-
               </div>
             </div>
           </div>

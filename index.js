@@ -48,7 +48,7 @@ Vue.createApp({
         }
     },
     computed: {
-        groupedItems() {
+        groupedHobbies() {
             const groups = [];
             for (let i = 0; i < this.hobbies.items.length; i += 3) {
                 groups.push(this.hobbies.items.slice(i, i + 3)); // 每次取得3個元素
@@ -57,3 +57,39 @@ Vue.createApp({
         }
     }
 }).mount('#hobbies');
+
+Vue.createApp({
+    data() {
+        return {
+            projects: {
+                items: [
+                    { id: 1, title: 'Online Web Shop', time: '2023 Jun', description: 'School Projects' },
+                    { id: 2, title: 'Course Selection Plugin', time: '2023 Dec', description: '' },
+                    { id: 3, title: 'Teacher\'s Personal Website', time: '2024 May', description: '' },
+                    { id: 4, title: 'Lending System', time: '2024 Aug', description: '' },
+                    { id: 5, title: 'Check inout System', time: '2024 Sep', description: '' }
+                ]
+            }
+        }
+    },
+    computed: {
+        groupedProjects() {
+            const groups = [];
+            for (let i = 0; i < this.projects.items.length; i += 3) {
+                groups.push(this.projects.items.slice(i, i + 3)); // 每次取得3個元素
+            }
+            return groups;
+        }
+    }
+}).mount('#projects');
+
+Vue.createApp({
+    data() {
+        return {
+            items: [
+                { id: 1, dur: '2020 - Now', degree: 'Bachelor', major: 'Computer Science and Information Engineering', study_at: 'National Changhua Univerisity of Education' },
+                { id: 2, dur: '2018 - 2020', degree: 'High School', major: 'Normal Subject', study_at: 'Hsin Tian Senior High School' },
+            ]
+        }
+    }
+}).mount('#education');
