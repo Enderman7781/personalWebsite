@@ -37,8 +37,14 @@
           <a class="fa-icon fa-icon-2x" href="https://instagram.com/54enderman?igshid=MzNlNGNkZWQ4Mg==" title="">
             <i class="fa fa-instagram"></i>
           </a>
+          <a class="fa-icon fa-icon-2x" href="www.linkedin.com/in/安得-蔣光宗" title="">
+            <i class="fa fa-linkedin"></i>
+          </a>
           <a class="fa-icon fa-icon-2x" href="https://youtube.com/@1a2sd4f5g6h7j8k9l" title="">
             <i class="fa fa-youtube"></i>
+          </a>
+          <a class="fa-icon fa-icon-2x" href="https://github.com/Enderman7781" title="">
+            <i class="fa fa-github"></i>
           </a>
         </p>
       </div>
@@ -60,14 +66,14 @@
                   <p><img :src="pic_url" class="img-responsive" alt=""></p>
                 </div>
                 <div class="col-md-8">
-                  <p>Kuang Tsung Chiang</p>
-                  <p>Nickname: Ender</p>
-                  <p>July/05/2003 - {{aged}} years old</p>
-                  <p>Current Job: Student - Study at National Changhua Univerisity of Education</p>
-                  <p>Major In: Computer Science and Information Engineering</p>
-                  <p>Prisident of 28th NCUESA</p>
-
-                  <br>
+                  <strong>
+                    <h4>Kuang Tsung Chiang 蔣光宗 (Ender 安得)</h4>
+                  </strong>
+                  <ul>
+                    <li>July/05/2003 - {{aged}} years old</li>
+                    <li>Graduate Student - Study at National Changhua Univerisity of Education</li>
+                    <li>Major: Computer Science</li>
+                  </ul>
                   <span style="white-space: pre-line;">
                     {{personalInfo.intro}}
                   </span>
@@ -75,34 +81,6 @@
               </div>
             </div>
           </div>
-
-          <div class="card" id="hobbies">
-            <div class="card-block">
-              <h2>Hobbies</h2>
-              <div v-for="(group, index) in groupedHobbies" :key="index" class="row">
-                <div class="col-md-4 " v-for="item in group" :key="item.id" class="element">
-                  <img :src="item.img_url" class="img-responsive" alt="">
-                  <h3 class="h5">{{item.topic}}</h3>
-                  <p>{{item.description}}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card" id="projects">
-            <div class="card-block">
-              <h2>Projects</h2>
-              <div v-for="(group, index) in groupedProjects" :key="index" class="row">
-                <div class="col-md-4" v-for="item in group" :key="item.id" class="element">
-                  <!--<img :src="item.img_url" class="img-responsive" alt="">-->
-                  <h3 class="h5">{{item.title}}</h3>
-                  <p>{{item.time}}</p>
-                  <p>{{item.description}}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <div class="card" id="education">
             <div class="card-block">
               <h2>Education</h2>
@@ -110,39 +88,68 @@
                 <div class="col-md-4" v-for="(item, index) in items" :key="index">
                   <div class="education-experience">
                     <small class="date">{{item.dur}}</small>
-                    <h3 class="h5 date-title">{{item.major}}</h3>
-                    <h4 class="h5 date-title">{{item.study_at}}</h4>
-                    <p>{{item.degree}}</p>
+                    <h3>{{item.degree}}</h3>
+                    <h4>{{item.major}}</h4>
+                    <span>{{item.study_at}}</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="card">
+          <div class="card" id="experience">
+            <div class="card-block">
+              <h2>Experience</h2>
+              <div v-for="(item, index) in items" :key="index">
+                <div class="work-experience">
+                  <small class="date">{{item.dur}}</small>
+                  <h3 class="h5 date-title">{{item.job}} - {{item.place}}</h3>
+                  <p>{{item.description}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" id="language">
             <div class="card-block">
               <h2>Language</h2>
               <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <div class="language-experience">
                     <h3 class="h5">English <small>Fluent</small></h3>
+                    <ul>
+                      <li>TOEIC - 850</li>
+                      <li>GEPT Elementary - Pass</li>
+                    </ul>
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <div class="language-experience">
-                    <h3 class="h5">Chinese <small>Native Speaker</small></h3>
+                    <h3 class="h5">Chinese <small>Home languange</small></h3>
+                    <ul>
+                      <li>Mandarin</li>
+                      <li>Taiwanese</li>
+                    </ul>
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <div class="language-experience">
                     <h3 class="h5">Japanese <small>Beginner</small></h3>
+                    <ul>
+                      <li>JLPT N5 - PASS</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="language-experience">
+                    <h3 class="h5">Greek <small>Starter</small></h3>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="card">
+          <div class="card" id="familiar-program-langauge">
             <div class="card-block">
               <h2>Professional Skill</h2>
               <div class="row">
@@ -186,36 +193,37 @@
             </div>
           </div>
 
-          <div class="card">
+          <div class="card" id="projects">
             <div class="card-block">
-              <h2>Working Experience</h2>
-              <div class="work-experience">
-                <small class="date">2018/07-2018/08</small>
-                <h3 class="h5 date-title">Students leader- Chen An Yi Summer Vacation Camp</h3>
-
-
-                <p>Just a summer camp leader</p>
-              </div>
-
-              <div class="work-experience">
-                <small class="date">2021/03-2021/10</small>
-                <h3 class="h5 date-title">School Teacher- NeuroLink
-                  English School</a></h3>
-
-                <p>To assist children in completing their schoolwork, listen to their questions and needs, and
-                  patiently provide answers.</p>
-              </div>
-
-              <div class="work-experience">
-                <small class="date">2022/12-Now</small>
-                <h3 class="h5 date-title">Minister of Student Affairs- <a href="http://mashup-template.com"
-                    title="">NCUE</a></h3>
-
-                <p>To assist fellow students on campus with handling matters related to rights and resolving issues.
-                </p>
+              <h2>Projects</h2>
+              <div v-for="(group, index) in groupedProjects" :key="index" class="row">
+                <div class="col-md-4" v-for="item in group" :key="item.id" class="element">
+                  <!--<img :src="item.img_url" class="img-responsive" alt="">-->
+                  <h3>{{item.title}}</h3>
+                  <ul>
+                    <li>{{item.time}}</li>
+                    <li>{{item.description}}</li>
+                    <li v-if="item.href"><a :href="item.href">Link</a></li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
+
+          <div class="card" id="hobbies">
+            <div class="card-block">
+              <h2>Hobbies</h2>
+              <div v-for="(group, index) in groupedHobbies" :key="index" class="row">
+                <div class="col-md-4 " v-for="item in group" :key="item.id" class="element">
+                  <img :src="item.img_url" class="img-responsive" alt="">
+                  <h3 class="h5">{{item.topic}}</h3>
+                  <p>{{item.description}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
 
           <div class="card">
             <div class="card-block">
@@ -267,7 +275,7 @@
             </div>
           </div>
 
-          <div class="card">
+          <div class="card" id="photos">
             <div class="card-block">
               <h2>Some Photos</h2>
               <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -396,7 +404,7 @@
             <div class="card-block">
               <h2>Social Network</h2>
               <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-2">
                   <p class="social-buttons"><a
                       href="https://www.facebook.com/profile.php?viewas=100000686899395&id=100006224173338"
                       title=""><span class="social-round-icon fa-icon"><i class="fa fa-facebook"></i></span>蔣光宗</a>
@@ -405,11 +413,19 @@
                 <div class="col-md-3">
                   <p class="social-buttons"><a href="https://instagram.com/54enderman?igshid=MzNlNGNkZWQ4Mg=="
                       title=""><span class="social-round-icon fa-icon"><i
-                          class="fa fa-instagram"></i></span>@54enderman</a></p>
+                          class="fa fa-instagram"></i></span>@enderman._.75</a></p>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                   <p class="social-buttons"><a href="https://youtube.com/@1a2sd4f5g6h7j8k9l" title=""><span
                         class="social-round-icon fa-icon"><i class="fa fa-youtube"></i></span>安得</a></p>
+                </div>
+                <div class="col-md-2">
+                  <p class="social-buttons"><a href="https://github.com/Enderman7781" title=""><span
+                        class="social-round-icon fa-icon"><i class="fa fa-github"></i></span>倉庫</a></p>
+                </div>
+                <div class="col-md-2">
+                  <p class="social-buttons"><a href="www.linkedin.com/in/安得-蔣光宗" title=""><span
+                        class="social-round-icon fa-icon"><i class="fa fa-linkedin"></i></span>LinkedIn</a></p>
                 </div>
               </div>
             </div>
