@@ -3,7 +3,7 @@ const based_img_url = "./assets/images/";
 Vue.createApp({
     data() {
         return {
-            pic_url: based_img_url + "head2.jpg",
+            pic_url: based_img_url + "head3.jpg",
             personalInfo: {
                 intro: `Hello, I'm Kuang Tsung, you can call me Ender instead.
                 This nickname is given by myself when I was a child.
