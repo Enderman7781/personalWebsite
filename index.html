@@ -113,6 +113,71 @@
     .photo-item:hover img {
       transform: scale(1.05);
     }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 70px;
+    }
+
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, .95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0, 0, 0, .08);
+      transform: translateY(-100%);
+      transition: transform .3s ease;
+    }
+
+    .site-nav.is-visible {
+      transform: translateY(0);
+    }
+
+    .nav-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .site-nav a {
+      color: #555;
+      text-decoration: none;
+      white-space: nowrap;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+      transition: color .2s, border-color .2s;
+    }
+
+    @media (max-width: 767px) {
+      .site-nav a {
+        font-size: .7rem;
+      }
+
+      .nav-inner {
+        gap: 10px;
+        padding: 10px 16px;
+      }
+    }
+
+    .site-nav a:hover {
+      color: #ff0060;
+    }
+
+    .site-nav a.active {
+      color: #ff0060;
+      border-bottom-color: #ff0060;
+    }
   </style>
   <!-- Disable tap highlight on IE -->
   <meta name="msapplication-tap-highlight" content="no">
@@ -142,12 +207,19 @@
       </div>
     </header>
 
+    <nav class="site-nav" :class="{ 'is-visible': navVisible }">
+      <div class="nav-inner">
+        <a v-for="s in sections" :key="s.id" :href="'#' + s.id" :class="{ active: activeSection === s.id }">{{ s.label
+          }}</a>
+      </div>
+    </nav>
+
     <!-- About Me -->
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
           <!-- About Me -->
-          <div class="card">
+          <div class="card" id="about">
             <div class="card-block">
               <div class="row">
                 <div class="col-md-4">
@@ -166,7 +238,7 @@
           </div>
 
           <!-- Experience Area -->
-          <div class="card">
+          <div class="card" id="work">
             <div class="card-block">
               <h2>Experience</h2>
               <div v-for="(item, index) in workExperience" :key="item.start + item.place">
@@ -185,7 +257,7 @@
           </div>
 
           <!-- Community Area -->
-          <div class="card">
+          <div class="card" id="community">
             <div class="card-block">
               <h2>Community Experience</h2>
               <div class="row">
@@ -207,7 +279,7 @@
           </div>
 
           <!-- Education Area -->
-          <div class="card">
+          <div class="card" id="education">
             <div class="card-block">
               <h2>Education</h2>
               <div class="row">
@@ -224,7 +296,7 @@
           </div>
 
           <!-- Language Area -->
-          <div class="card">
+          <div class="card" id="language">
             <div class="card-block">
               <h2>Language</h2>
               <div class="row">
@@ -240,8 +312,8 @@
             </div>
           </div>
 
-          <!-- Skill -->
-          <div class="card">
+          <!-- Skills -->
+          <div class="card" id="skills">
             <div class="card-block">
               <h2>Skills</h2>
               <div class="row">
@@ -256,7 +328,7 @@
           </div>
 
           <!-- Projects Area -->
-          <div class="card">
+          <div class="card" id="projects">
             <div class="card-block">
               <h2>Projects</h2>
               <div class="row">
@@ -272,8 +344,8 @@
             </div>
           </div>
 
-          <!-- Awarding Area -->
-          <div class="card">
+          <!-- Awards Area -->
+          <div class="card" id="awards">
             <div class="card-block">
               <h2>Awarding</h2>
               <div class="row">
@@ -324,7 +396,7 @@
           </div>
 
           <!-- Hobbies Area -->
-          <div class="card">
+          <div class="card" id="hobbies">
             <div class="card-block">
               <h2>Hobbies</h2>
               <div class="row hobbies-row">
@@ -338,7 +410,7 @@
           </div>
 
           <!-- Photos -->
-          <div class="card">
+          <div class="card" id="photos">
             <div class="card-block">
               <h2>Photos</h2>
 

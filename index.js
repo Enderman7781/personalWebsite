@@ -41,6 +41,21 @@ function formatDur(item) {
 Vue.createApp({
     data() {
         return {
+            sections: [
+                { id: 'about', label: 'About' },
+                { id: 'work', label: 'Work' },
+                { id: 'community', label: 'Community' },
+                { id: 'education', label: 'Education' },
+                { id: 'language', label: 'Language' },
+                { id: 'skills', label: 'Skills' },
+                { id: 'projects', label: 'Projects' },
+                { id: 'awards', label: 'Awards' },
+                { id: 'hobbies', label: 'Hobbies' },
+                { id: 'photos', label: 'Photos' }
+            ],
+            navVisible: false,
+            activeSection: '',
+
             personalInfo: {
                 realNameCN: '蔣光宗',
                 realNameEN: 'Leo Chiang',
@@ -380,6 +395,27 @@ Vue.createApp({
                 scrollRevelation('.card');
             }
         });
+
+        window.addEventListener('scroll', this.onScroll, { passive: true });
+        this.onScroll();
+    },
+    beforeDestroy() {
+        window.removeEventListener('scroll', this.onScroll);
+    },
+    methods: {
+        onScroll() {
+            this.navVisible = window.scrollY > window.innerHeight * 0.6;
+
+            let current = '';
+            for (const s of this.sections) {
+                const el = document.getElementById(s.id);
+                if (el && el.getBoundingClientRect().top <= 100) current = s.id;
+            }
+            this.activeSection = current;
+        },
+        scrollTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     }
 
 
