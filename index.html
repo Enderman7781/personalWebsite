@@ -11,12 +11,75 @@
 
 
   <style>
+    .mb-0 {
+      margin-bottom: 0 !important;
+    }
+
+    .mb-xs {
+      margin-bottom: 3px !important;
+    }
+
     .mb-sm {
       margin-bottom: 5px !important;
     }
-    .hobbies-row{
+
+    .mb-md {
+      margin-bottom: 10px !important;
+    }
+
+    .mb-lg {
+      margin-bottom: 20px !important;
+    }
+
+    .date {
+      display: block;
+      color: #777;
+    }
+
+    .hobbies-row {
       display: flex;
       flex-wrap: wrap;
+    }
+
+    .name-line {
+      display: flex;
+      align-items: baseline;
+      gap: .6em;
+      flex-wrap: wrap;
+    }
+
+    .name-line h2,
+    .name-line h4 {
+      margin: 0;
+    }
+
+    .exp-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .exp-logo {
+      margin-top: 1rem;
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .exp-body .date {
+      display: block;
+      margin-bottom: .5rem;
+    }
+
+    .exp-logo-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #eee;
+      border-radius: 6px;
+      font-weight: bold;
+      color: #888;
     }
   </style>
   <!-- Disable tap highlight on IE -->
@@ -33,52 +96,78 @@
 <body class="" style="background-color: white;">
 
   <!-- Add your content of header -->
-  <main class="content-wrapper">
+  <main class="content-wrapper" id="app">
     <header class="white-text-container section-container">
       <div class="text-center">
-        <h1>Kuang Tsung Chiang</h1>
+        <h1>Ender Chiang</h1>
         <p>Personal Website</p>
         <p>
-          <a class="fa-icon fa-icon-2x" href="https://instagram.com/54enderman?igshid=MzNlNGNkZWQ4Mg==" title="">
-            <i class="fa fa-instagram"></i>
-          </a>
-          <a class="fa-icon fa-icon-2x" href="www.linkedin.com/in/endermiku" title="">
-            <i class="fa fa-linkedin"></i>
-          </a>
-          <a class="fa-icon fa-icon-2x" href="https://github.com/Enderman7781" title="">
-            <i class="fa fa-github"></i>
+          <a v-for="link in socialLinks" :key="link.key" class="fa-icon fa-icon-2x" :href="link.url" :title="link.key"
+            target="_blank" rel="noopener noreferrer">
+            <i class="fa" :class="'fa-' + link.icon"></i>
           </a>
         </p>
       </div>
     </header>
 
-
-
-    <!-- Add your site or app content here -->
-
-    <div class="container" id="app">
+    <!-- About Me -->
+    <div class="container">
       <div class="row">
         <div class="col-xs-12">
-
           <div class="card">
             <div class="card-block">
-              <h2>About me</h2>
               <div class="row">
                 <div class="col-md-4">
-                  <p><img :src="pic_url" class="img-responsive" alt=""></p>
+                  <p><img :src="personalInfo.selfie" class="img-responsive" alt=""></p>
                 </div>
                 <div class="col-md-8">
-                  <strong>
-                    <h4>Kuang Tsung Chiang 蔣光宗 (Ender 安得)</h4>
-                  </strong>
-                  <ul>
-                    <li>July/05/2003 - {{aged}} years old</li>
-                    <li>Graduate Student - Study at National Changhua Univerisity of Education</li>
-                    <li>Major: Computer Science</li>
-                  </ul>
-                  <span style="white-space: pre-line;">
-                    {{personalInfo.intro}}
-                  </span>
+                  <div class="name-line mb-xs">
+                    <h2>{{ personalInfo.nickName }}</h2>
+                    <h4 class="text-muted">{{ personalInfo.realNameEN }} {{ personalInfo.realNameCN }}</h4>
+                  </div>
+                  <h4 class="">{{ personalInfo.currentJob }}</h4>
+                  <p style="white-space: pre-line;">{{ personalInfo.intro }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience Area -->
+          <div class="card">
+            <div class="card-block">
+              <h2>Experience</h2>
+              <div v-for="(item, index) in workExperience" :key="item.start + item.place">
+                <div class="work-experience exp-item">
+                  <img v-if="item.logo" :src="item.logo" :alt="item.place" class="exp-logo">
+                  <div v-else class="exp-logo exp-logo-text">{{ item.place.slice(0, 2) }}</div>
+                  <div class="exp-body">
+                    <h4 class="h5 mb-0">{{ item.job }}</h4>
+                    <p class="text-muted mb-0">{{ item.place }}</p>
+                    <small class="date">{{ item.dur }}</small>
+                    <p class="mt-sm">{{ item.description }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Community Area -->
+          <div class="card">
+            <div class="card-block">
+              <h2>Community Experience</h2>
+              <div class="row">
+                <div :class="communityColumnClass" v-for="item in communityExperience" :key="item.start + item.place">
+                  <div class="work-experience exp-item">
+                    <img v-if="item.logo" :src="item.logo" :alt="item.place" class="exp-logo">
+                    <div v-else class="exp-logo exp-logo-text">{{ item.short || item.place.slice(0, 2) }}</div>
+
+                    <div class="exp-body">
+                      <h4 class="h5 mb-0">{{ item.place }}</h4>
+                      <p class="text-muted mb-0">{{ item.job }}</p>
+                      <p class="date">{{ item.dur }}</p>
+                      <p>{{ item.description }}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -96,20 +185,6 @@
                     <h4>{{item.major}}</h4>
                     <span>{{item.study_at}}</span>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Experience Area -->
-          <div class="card">
-            <div class="card-block">
-              <h2>Experience</h2>
-              <div v-for="(item, index) in experience" :key="index">
-                <div class="work-experience">
-                  <small class="date">{{item.dur}}</small>
-                  <h3 class="h5 date-title mb-sm">{{item.job}} - {{item.place}}</h3>
-                  <p>{{item.description}}</p>
                 </div>
               </div>
             </div>
