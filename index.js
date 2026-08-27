@@ -116,8 +116,8 @@ Vue.createApp({
                     logo: based_img_url + 'ncuesa.png',
                     start: '2024.02',
                     end: "",
-                    job: "General Affiars",
-                    place: "NCUESA",
+                    job: "IT",
+                    place: "NCUESA - General Affiars",
                     description: "Network Management, Website Devlopments and Maintainance, IT stuffs, etc."
                 },
                 {
@@ -198,16 +198,55 @@ Vue.createApp({
                 },
             ],
             skills: [
-
+                {
+                    category: 'Network', items: [
+                        'Network Management',
+                        'Palo alto',
+                        'Fortinet',
+                        'Aruba',
+                        'DNS / DHCP',
+                        'MS AD'
+                    ]
+                },
+                {
+                    category: 'Server & Virtualization', items: [
+                        'Windows Server',
+                        'Ubuntu Server',
+                        'VMware (ESXi, vCenter, vSphere)',
+                        'Veeam',
+                        'HPE Server',
+                        'M365'
+                    ]
+                },
+                {
+                    category: 'Frontend Devlopment', items: [
+                        'Vue.js',
+                        'React.js',
+                        'TypeScript'
+                    ]
+                },
+                {
+                    category: 'Backend Devlopment', items: [
+                        'Laravel',
+                        'Node.js'
+                    ]
+                },
+                {
+                    category: 'Database', items: [
+                        'MySQL',
+                        'MariaDB',
+                        'PostgreSQL'
+                    ]
+                },
+                {
+                    category: 'Programming', items: [
+                        'C / C++',
+                        'Python',
+                        'JavaScript'
+                    ]
+                },
             ],
             language: [
-                {
-                    language: 'English',
-                    level: 'Fluent',
-                    details: [`
-                        TOEIC - 850 (Blue)
-                    `]
-                },
                 {
                     language: 'Chinese',
                     level: 'Native',
@@ -217,15 +256,22 @@ Vue.createApp({
                     ]
                 },
                 {
+                    language: 'English',
+                    level: 'Full Professional',
+                    details: [`
+                        TOEIC - 850 (Blue)
+                    `]
+                },
+                {
                     language: 'Japanese',
-                    level: 'Basic',
+                    level: 'Elementary',
                     details: [
                         'JLPT N5 - Pass'
                     ]
                 },
                 {
                     language: 'German',
-                    level: 'Basic'
+                    level: 'Elementary'
                 }
             ],
             projects: [
@@ -260,35 +306,35 @@ Vue.createApp({
             ],
             hobbies: [
                 {
-                    img_url: based_img_url + "train.jpg",
-                    topic: "Photographing",
-                    description: "Amateur photographer focusing on train tracking."
+                    img_url: based_img_url + "kyoto.jpg",
+                    topic: "Photography",
+                    description: "Amateur photographer, more focusing on train tracking."
                 },
                 {
-                    img_url: based_img_url + "smalltrain.jpg",
+                    img_url: based_img_url + "train_static.jpg",
                     topic: "Train spotting",
                     description: "I like everything on the rails, except Ruby."
                 },
                 {
-                    img_url: based_img_url + "sunmoonlake.jpg",
+                    img_url: based_img_url + "plane.jpg",
                     topic: "Traveling",
                     description: "Travel everywhere. Particularly fond of Scandinavia."
                 },
                 {
                     img_url: based_img_url + "bike.jpg",
                     topic: "Biking",
-                    description: "Enjoying the sound of the engine, riding on the broaden road, and exploring the world"
+                    description: "Enjoying the sound of the engine, riding on the open road, and exploring the world"
                 },
-                {
-                    img_url: based_img_url + "Youtube_logo.png",
-                    topic: "Video Making",
-                    description: "Former Youtuber, and retired now"
-                },
-
             ],
 
-
-
+            photos: [
+                { src: based_img_url + 'Duoliang.jpg', thumb: based_img_url + 'Duoliang.jpg', alt: 'Duoliang Station' },
+                { src: based_img_url + 'puyuma.jpg', thumb: based_img_url + 'puyuma.jpg', alt: 'Shanjia Station' },
+                { src: based_img_url + 'beiyiroad.jpg', thumb: based_img_url + 'beiyiroad.jpg', alt: 'Somewhere beside Beiyi Road' },
+                { src: based_img_url + 'taipeimainstaion.jpg', thumb: based_img_url + 'taipeimainstaion.jpg', alt: 'Taipei Station' },
+                { src: based_img_url + 'osakacho.jpg', thumb: based_img_url + 'osakacho.jpg', alt: 'Osakacho' }
+            ],
+            photoAlbumUrl: 'https://www.flickr.com/photos/204893729@N02/'
 
         }
     },
@@ -304,13 +350,13 @@ Vue.createApp({
         },
 
         // Experience Block Beauty
-        workExperience() { 
-            return filterByType(this.experience, 'work') 
+        workExperience() {
+            return filterByType(this.experience, 'work')
         },
-        communityExperience() { 
-            return filterByType(this.experience, 'community') 
+        communityExperience() {
+            return filterByType(this.experience, 'community')
         },
-        communityColumnClass(){
+        communityColumnClass() {
             return getColumnClass(this.communityExperience.length)
         },
 
